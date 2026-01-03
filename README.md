@@ -25,6 +25,7 @@ Some potential ideas for you:
 - make it two dimensional and design a way to view this two dimensional system's chaos visually
 
 Here are the default examples:
+
 ![Demo of normal QST](media/out-n.gif)
 
 ![Demo of perfect QST](media/out-p.gif)

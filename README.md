@@ -24,7 +24,7 @@ Some potential ideas for you:
 - try adding a wall/barrier in the middle and seeing how that works out, maybe you can get tunneling?
 - make it two dimensional and design a way to view this two dimensional system's chaos visually
 
-Here are the default examples:
+## Examples:
 
 ![Demo of normal QST](media/out-n.gif)
 

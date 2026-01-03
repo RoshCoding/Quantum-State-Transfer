@@ -41,7 +41,7 @@ int main(void) {
   n = 64; // dimension of A
   A = calloc(n * n, sizeof(double complex));
 
-  fmatrix_like_richard(A, n, -13.6, -13.6, 100);
+  fmatrix_like_richard(A, n, -13.6, -13.6, 10);
 
   // --------------------------------------------------------------
 

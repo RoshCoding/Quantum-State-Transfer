@@ -1,7 +1,7 @@
 [project]
 name = "qst"
 version = "0.1.0"
-description = "Add your description here"
+description = "Quantum state transfer on spin chains simulation"
 readme = "README.md"
 authors = [
     { name = "Roshan Venkatesh", email = "roshvenk@gmail.com" }
@@ -13,6 +13,7 @@ dependencies = [
     "scipy>=1.18.1",
 ]
 license = "MIT"
+license-files = ["LICENSE"]
 
 [build-system]
 requires = ["uv_build>=0.12.7,<0.13.0"]

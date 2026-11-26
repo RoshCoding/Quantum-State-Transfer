@@ -1,31 +1,55 @@
-# Quantum-State-Transfer
-**Quantum State Transfer**: Made with the UC Davis COSMOS program
+# Quantum State Transfer
 
+Exact simulation of a single quantum excitation hopping along a 1D chain
+(a tight-binding model, equivalent to one excitation in an XX spin chain).
+Units: hbar = 1, so energies are in 1/time. Compares a uniform chain with the
+"perfect state transfer" chain of Christandl et al.
 
-## What does this do?
-It solves the time dependent **Schrodinger** in one dimension, recording probabilities of finding the given particle (via a 64x64 **Hermitian matrix**) at any given point in the line.
+![heatmap perfect](media/heatmap_perfect.png)
 
-## How does it do this?
-We set up a Hermitian matrix and provide it to this code in order to start it. Then, the code performs linear algebra operations each time step and puts the results for each step into the output file.
+## Physics
+- The state starts on site 0. The Hamiltonian is a real-symmetric tridiagonal
+  matrix H; the state at time t is exp(-iHt) acting on the start state, computed
+  exactly from the eigendecomposition of H.
+- **Uniform chain** (equal couplings): the excitation *disperses* (the
+  probability spreads like Bessel functions), reflects off the ends, and never
+  refocuses (best last-site probability about 0.37). A constant on-site energy
+  only adds a global phase and does not change any probability.
+- **Perfect chain** (couplings J_j = (lam/2) sqrt(j (N - j))): the energy levels
+  are exactly evenly spaced, so the wave refocuses and arrives on the last site
+  with probability 1 at t = pi/lam, then returns at 2 pi/lam.
 
-## How to use:
+## Results
+| Chain | Best last-site probability | Time |
+|---|---|---|
+| Uniform (N=64, J=10) | about 0.37 | t = 3.4 |
+| Perfect (N=64, lam=1) | 1.0 | t = pi |
 
-**qst-n.c** is the completed code in **C**. It will fill up a matrix with initial values of -13.6 representing the **ground state energy** of a hydrogen atom in eV. These can be changed via the linalg.c function "fmatrix_like_richard" referring to **Professor Richard Scalettar**, who helped teach and guide me for the project as part of the **UC Davis COSMOS** program.
-**qst-p.c** is the same code. However, it uses different initial values that result in **perfect quantum state transfer**. You'll likely notice that the original numbers that were used for qst-c.c quickly fall into chaos due to the chaotic nature of quantum mechanics. However, fine tuning this allows us to see transfer that doesn't devolve into chaos like before.
-The linalg.c and linalg.h files are the same for both folders for simplicity.
+![fidelity](media/fidelity.png)
+![uniform heatmap](media/heatmap_uniform.png)
 
-Compile and run the programs to generate your outputs.
+## Install and run
+```bash
+git clone git@github.com:RoshCoding/Quantum-State-Transfer.git
+cd Quantum-State-Transfer
+uv sync
+uv run python -m qst --chain perfect --dt 0.01 --steps 400
+uv run python -m qst.plotting     # regenerate figures in media/
+uv run pytest                     # run the tests
+```
 
-View results in qst-out-n.txt or qst-out-p.txt for qst-n.c and qst-p.c respectively. Two **python** scripts for creating animations to visualize the data's continuous curve over time. It uses **matplotlib** and **ffmpeg** to produce mp4 files. The default videos are available in the repo as well, both in the respective folders and the **media** folder. 
+## Testing
+The tests check norm conservation, perfect transfer at t = pi, agreement with the
+analytic Bessel-function solution of the uniform chain, and agreement with the
+output of the original C code.
 
-Additionally, you are free to make changes to the code to try setting up your own quantum systems and seeing the chaos that they begin creating.
-Some potential ideas for you:
-- try finding your own perfect values
-- try adding a wall/barrier in the middle and seeing how that works out, maybe you can get tunneling?
-- make it two dimensional and design a way to view this two dimensional system's chaos visually
+## History and credits
+The original C + LAPACK version is preserved at tag `v1.0-cosmos`.
+Originally developed in the UC Davis COSMOS program (with the guidance of Prof. Scalettar).
 
-## Examples:
+## Reference
+M. Christandl, N. Datta, A. Ekert, A. J. Landahl, *Perfect State Transfer in
+Quantum Spin Networks*, Phys. Rev. Lett. 92, 187902 (2004).
 
-![Demo of normal QST](media/out-n.gif)
-
-![Demo of perfect QST](media/out-p.gif)
+## License
+MIT (see LICENSE).

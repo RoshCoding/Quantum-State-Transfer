@@ -1,0 +1,29 @@
+[project]
+name = "qst"
+version = "0.1.0"
+description = "Quantum state transfer on spin chains simulation"
+readme = "README.md"
+authors = [
+    { name = "Roshan Venkatesh", email = "roshvenk@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.5",
+    "scipy>=1.18.1",
+]
+license = "MIT"
+license-files = ["LICENSE"]
+
+[build-system]
+requires = ["uv_build>=0.12.7,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.6",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

@@ -44,8 +44,7 @@ analytic Bessel-function solution of the uniform chain, and agreement with the
 output of the original C code.
 
 ## History and credits
-The original C + LAPACK version is preserved at tag `v1.0-cosmos`.
-Originally developed in the UC Davis COSMOS program (with the guidance of Prof. Scalettar).
+The original C + LAPACK version is preserved at tag `v1.0-cosmos`, originally developed in the UC Davis COSMOS program (with the guidance of Prof. Scalettar).
 
 ## Reference
 M. Christandl, N. Datta, A. Ekert, A. J. Landahl, *Perfect State Transfer in

@@ -1,5 +1,6 @@
 # Quantum State Transfer
 ![ci](https://github.com/RoshCoding/Quantum-State-Transfer/actions/workflows/ci.yml/badge.svg)
+
 Exact simulation of a single quantum excitation hopping along a 1D chain
 (a tight-binding model, equivalent to one excitation in an XX spin chain).
 Units: hbar = 1, so energies are in 1/time. Compares a uniform chain with the
